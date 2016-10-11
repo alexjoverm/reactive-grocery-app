@@ -1,3 +1,15 @@
-<p>
-  groceries works!
-</p>
+<section>
+  <h2>Listas de compras!</h2>
+
+  <section class="lists">
+    <span *ngIf="!lists || !lists.length">No hay ninguna lista</span>
+    <app-list *ngFor="let list of lists"
+      [list]="list"
+      (delete)="deleteList">
+    </app-list>
+  </section>
+
+  <footer class="tool-buttons">
+    <app-list-edit></app-list-edit>
+  </footer>
+</section>

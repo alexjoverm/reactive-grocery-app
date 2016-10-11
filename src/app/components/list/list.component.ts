@@ -1,15 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+
+export class List {
+  id: number
+  title: string
+  created: Date
+  items: ListItem[]
+}
+
+export class ListItem {
+  id: number
+  title: string
+}
+
+enum Mode {
+  show,
+  edit
+}
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  @Input() list: List
+  @Output() delete: EventEmitter<List> = new EventEmitter<List>()
 
   ngOnInit() {
+
   }
 
+  deleteItem() {
+    this.delete.emit(this.list)
+  }
 }
