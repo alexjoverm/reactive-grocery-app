@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.scss';
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background: #eee;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+md-icon.material-icons {
+  vertical-align: middle;
+  line-height: 0.85;
+}
