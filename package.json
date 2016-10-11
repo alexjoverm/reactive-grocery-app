@@ -17,6 +17,7 @@
     "@angular/core": "~2.0.0",
     "@angular/forms": "~2.0.0",
     "@angular/http": "~2.0.0",
+    "@angular/material": "^2.0.0-alpha.9-3",
     "@angular/platform-browser": "~2.0.0",
     "@angular/platform-browser-dynamic": "~2.0.0",
     "@angular/router": "~3.0.0",
@@ -26,8 +27,10 @@
     "zone.js": "^0.6.23"
   },
   "devDependencies": {
+    "@ngrx/core": "github:ngrx/core",
     "@types/jasmine": "^2.2.30",
     "@types/node": "^6.0.42",
+    "@types/request": "0.0.31",
     "angular-cli": "1.0.0-beta.17",
     "codelyzer": "~0.0.26",
     "jasmine-core": "2.4.1",
