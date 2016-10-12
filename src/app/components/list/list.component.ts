@@ -3,18 +3,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 export class List {
   id: number
   title: string
-  created: Date
-  items: ListItem[]
+  dueDate: Date
+  items: ListItem[] = []
 }
 
 export class ListItem {
   id: number
   title: string
-}
-
-enum Mode {
-  show,
-  edit
 }
 
 @Component({
@@ -24,7 +19,7 @@ enum Mode {
 })
 export class ListComponent implements OnInit {
 
-  @Input() list: List
+  @Input() list
   @Output() delete: EventEmitter<List> = new EventEmitter<List>()
 
   ngOnInit() {

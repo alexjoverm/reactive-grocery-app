@@ -8,14 +8,12 @@ import { MaterialModule } from '@angular/material'
 import { AppComponent }       from './app.component'
 import { ListComponent }      from './components/list/list.component'
 import { GroceriesComponent } from './containers/groceries/groceries.component';
-import { ListEditComponent } from './components/list-edit/list-edit.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
-    GroceriesComponent,
-    ListEditComponent
+    GroceriesComponent
   ],
   imports: [
     BrowserModule,
