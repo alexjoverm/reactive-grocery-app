@@ -5,7 +5,8 @@
     <span *ngIf="!lists || !lists.length">No hay ninguna lista</span>
     <app-list *ngFor="let list of lists"
       [list]="list"
-      (delete)="deleteList(list)">
+      (delete)="deleteList(list)"
+      routerLink="list/{{list.id}}">
     </app-list>
   </section>
 
