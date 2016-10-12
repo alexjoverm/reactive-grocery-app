@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core'
+import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs/Observable'
 import { List } from '../../components/list/list.component'
+import { ADD_LIST, REMOVE_LIST } from '../../state/list.reducer'
 
 @Component({
   selector: 'app-groceries',
@@ -8,37 +11,26 @@ import { List } from '../../components/list/list.component'
 })
 export class GroceriesComponent implements OnInit {
 
-  private lists: List[]
+  private lists$: Observable<List[]>
   private tempList:List = new List()
 
-  constructor() {
-    this.lists = [
-      { id: 0, dueDate: new Date(), title: 'Mercadona sjkljfkls jdflksj lkfdjsklafjdkl;as', items: [
-        { id: 0, title: 'Mayonesa' }
-      ] },
-      { id: 1, dueDate: new Date(), title: 'Consum', items: [] },
-      { id: 1, dueDate: new Date(), title: 'Consum', items: [] },
-    ]
-
-    this.lists[1].dueDate.setDate(this.lists[1].dueDate.getDate() - 1)
+  constructor(private store: Store<any>) {
+    this.lists$ = this.store.select('lists')
   }
 
   ngOnInit() {
   }
 
   deleteList(list: List) {
-    this.lists = this.lists.filter(l => l !== list)
+    this.store.dispatch({ type: REMOVE_LIST, payload: list})
   }
 
   createList(tempList) { // Don't specify List type because of dueDate
-    const lastId = this.lists.reduce((acum, list) => acum > list.id ? acum : list.id, 0)
-
     // Create list
     const list:List = Object.assign({}, tempList)
-    list.id = lastId + 1
     list.dueDate = new Date(tempList.dueDate) // transform to Date
 
     // Add list
-    this.lists.push(list)
+    this.store.dispatch({ type: ADD_LIST, payload: list})
   }
 }

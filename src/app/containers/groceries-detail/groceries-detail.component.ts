@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute, Params }   from '@angular/router'
+import { List } from '../../components/list/list.component'
 
 @Component({
   selector: 'app-groceries-detail',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroceriesDetailComponent implements OnInit {
 
-  constructor() { }
+  list: number
 
-  ngOnInit() {
+  constructor(
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    console.log(this.route.params.forEach((params: Params) => {
+      let id = +params['id']
+    }))
   }
 
 }

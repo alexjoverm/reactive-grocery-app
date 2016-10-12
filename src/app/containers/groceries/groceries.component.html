@@ -2,8 +2,8 @@
   <h2>Listas de compras!</h2>
 
   <section class="lists">
-    <span *ngIf="!lists || !lists.length">No hay ninguna lista</span>
-    <app-list *ngFor="let list of lists"
+    <span *ngIf="!(lists$ | async) || !(lists$ | async)?.length">No hay ninguna lista</span>
+    <app-list *ngFor="let list of lists$ | async"
       [list]="list"
       (delete)="deleteList(list)"
       routerLink="list/{{list.id}}">
