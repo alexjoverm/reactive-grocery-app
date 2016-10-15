@@ -7,7 +7,9 @@ import { State, initialState } from './list.state'
 export const actionTypes = {
   ADD_LIST: 'ADD_LIST',
   EDIT_LIST: 'EDIT_LIST',
-  REMOVE_LIST: 'REMOVE_LIST'
+  REMOVE_LIST: 'REMOVE_LIST',
+  ADD_ITEM: 'ADD_ITEM',
+  REMOVE_ITEM: 'REMOVE_ITEM',
 }
 
 
@@ -42,6 +44,30 @@ export const listReducer: ActionReducer<State> = (state: State = initialState, a
       return {
         ids: state.ids.filter(id => id !== list.id),
         entities: entitiesCopy
+      }
+    }
+
+    case actionTypes.ADD_ITEM: {
+      const { itemId, listId } = action.payload
+      console.log(action.payload)
+      const entity = Object.assign({}, state.entities[listId])
+      entity.items.push(itemId)
+      console.log(JSON.stringify(entity, null, 2))
+
+      return {
+        ids: state.ids,
+        entities: Object.assign({}, state.entities, { [listId]: entity })
+      }
+    }
+
+    case actionTypes.REMOVE_ITEM: {
+      const { itemId, list } = action.payload
+      const entity = state.entities[list.id]
+      entity.items = [...entity.items, itemId]
+
+      return {
+        ids: state.ids,
+        entities: Object.assign({}, state.entities, { [list.id]: entity })
       }
     }
 

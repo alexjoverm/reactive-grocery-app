@@ -13,7 +13,19 @@ export interface State {
   entities: listEntities
 }
 
+// export const initialState: State = {
+//   ids: [],
+//   entities: {}
+// }
+
 export const initialState: State = {
-  ids: [],
-  entities: {}
+  ids: [0],
+  entities: {
+    0: {
+      id: 0,
+      title: 'test',
+      dueDate: new Date(),
+      items: []
+    }
+  }
 }

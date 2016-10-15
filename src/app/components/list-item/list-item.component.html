@@ -1,0 +1,10 @@
+<md-checkbox
+  class="checkbox"
+  [checked]="item.checked"
+  (change)="updateItem($event)">
+</md-checkbox>
+<md-input
+  class="textbox"
+  [(ngModel)]="item.title"
+  (blur)="updateItem()">
+</md-input>

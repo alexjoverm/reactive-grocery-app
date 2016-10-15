@@ -1,0 +1,12 @@
+.list-items {
+  background: white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+app-list-item {
+  border-bottom: 1px solid #eee;
+  &:last-child {
+    border-bottom: none
+  }
+}

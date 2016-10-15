@@ -4,7 +4,6 @@ import { combineLatest } from 'rxjs/observable/combineLatest'
 import { zip } from 'rxjs/observable/zip'
 
 import { AppState } from '../app.state'
-import { listEntities } from './list.state'
 import { ListItemSelector } from '../list-item/list-item.selector'
 
 @Injectable()
@@ -43,13 +42,14 @@ export class ListSelector {
   }
 
   public getListWithItems(id: number) {
-    return zip(
+    return combineLatest(
       this.getList(id),
       this.listItemSelector.getListItemEntities()
     )
-    .map(([ list, listEntities]) => {
-      const items = list.items.map(listId => listEntities[listId])
-      return Object.assign({}, list, { items })
+    .map(([ list, listItemEntities]) => {
+      const items = list.items.map(listId => listItemEntities[listId])
+      list = Object.assign({}, list, { items })
+      return list
     })
   }
 }

@@ -1,3 +1,18 @@
-<p>
-  groceries-detail works!
-</p>
+<h2>{{list.title}}</h2>
+
+<section class="list-items">
+  <app-list-item
+    *ngFor="let item of list.items"
+    [item]="item"
+    (update)="updateItem($event)">
+  </app-list-item>
+</section>
+
+<button
+  md-raised-button
+  color="primary"
+  (click)="addItem()">
+    Añadir item
+</button>
+
+

@@ -13,36 +13,38 @@ export const actionTypes = {
 }
 
 
-/*******
+/**
  * REDUCER
- *******/
+ */
 
 export const listItemReducer: ActionReducer<State> = (state: State = initialState, action: Action): State => {
 
   switch (action.type) {
-    case actionTypes.ADD_LIST: {
-      const list = action.payload
+    case actionTypes.ADD_LIST_ITEM: {
+      const item = action.payload
       return {
-        ids: [...state.ids, list.id],
-        entities: Object.assign({}, state.entities, { [list.id]: list })
+        ids: [...state.ids, item.id],
+        entities: Object.assign({}, state.entities, { [item.id]: item })
       }
     }
 
-    case actionTypes.EDIT_LIST: {
-      const list = action.payload
+    case actionTypes.EDIT_LIST_ITEM: {
+      const item = Object.assign({}, action.payload)
+      console.log(item)
+      console.log(Object.assign({}, state.entities, { [item.id]: item }))
       return {
         ids: state.ids,
-        entities: Object.assign({}, state.entities, { [list.id]: list })
+        entities: Object.assign({}, state.entities, { [item.id]: item })
       }
     }
 
-    case actionTypes.REMOVE_LIST: {
-      const list = action.payload
+    case actionTypes.REMOVE_LIST_ITEM: {
+      const item = action.payload
       const entitiesCopy = Object.assign({}, state.entities)
-      delete entitiesCopy[list.id]
+      delete entitiesCopy[item.id]
 
       return {
-        ids: state.ids.filter(id => id !== list.id),
+        ids: state.ids.filter(id => id !== item.id),
         entities: entitiesCopy
       }
     }

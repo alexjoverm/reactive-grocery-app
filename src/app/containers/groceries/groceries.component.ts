@@ -19,7 +19,8 @@ export class GroceriesComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<any>,
     private listSelector: ListSelector
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.listsSub = this.listSelector.getLists()
@@ -42,6 +43,7 @@ export class GroceriesComponent implements OnInit, OnDestroy {
     const list: List = Object.assign({}, tempList)
     list.id = this.lists.length ? this.lists[this.lists.length - 1].id + 1 : 0
     list.dueDate = new Date(tempList.dueDate) // transform to Date
+    list.items = []
 
     // Add list
     this.store.dispatch({ type: actionTypes.ADD_LIST, payload: list})

@@ -17,6 +17,9 @@ export class ListItemSelector {
   }
 
   public getListItemEntities() {
-    return this.getState().map(state => state.entities)
+    return this.getState().map(state => state.entities).do(val => {
+      console.log('LIST ENTITIES')
+      console.log(val)
+    })
   }
 }

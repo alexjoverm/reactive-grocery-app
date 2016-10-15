@@ -15,14 +15,16 @@ import { GroceriesComponent } from './containers/groceries/groceries.component';
 import { GroceriesDetailComponent } from './containers/groceries-detail/groceries-detail.component';
 
 import { ListSelector } from './state/list/list.selector'
-import { ListItemSelector } from './state/list-item/list-item.selector'
+import { ListItemSelector } from './state/list-item/list-item.selector';
+import { ListItemComponent } from './components/list-item/list-item.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     GroceriesComponent,
-    GroceriesDetailComponent
+    GroceriesDetailComponent,
+    ListItemComponent
   ],
   imports: [
     BrowserModule,
