@@ -7,12 +7,15 @@ import { MaterialModule } from '@angular/material'
 import { routing } from './app.routing'
 
 import { StoreModule } from '@ngrx/store'
-import { listReducer } from './state/list.reducer'
+import { appReducer }  from './state/app.reducer'
 
 import { AppComponent }       from './app.component'
 import { ListComponent }      from './components/list/list.component'
 import { GroceriesComponent } from './containers/groceries/groceries.component';
 import { GroceriesDetailComponent } from './containers/groceries-detail/groceries-detail.component';
+
+import { ListSelector } from './state/list/list.selector'
+import { ListItemSelector } from './state/list-item/list-item.selector'
 
 @NgModule({
   declarations: [
@@ -29,12 +32,15 @@ import { GroceriesDetailComponent } from './containers/groceries-detail/grocerie
     // Add material module
     MaterialModule.forRoot(),
 
-    StoreModule.provideStore({ lists: listReducer }),
+    StoreModule.provideStore(appReducer),
 
     // Add routing
     routing
   ],
-  providers: [],
+  providers: [
+    ListSelector,
+    ListItemSelector
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

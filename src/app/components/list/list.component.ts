@@ -4,7 +4,7 @@ export class List {
   id: number
   title: string
   dueDate: Date
-  items: ListItem[] = []
+  items?: number[] | ListItem[]
 }
 
 export class ListItem {

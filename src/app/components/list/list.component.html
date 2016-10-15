@@ -13,6 +13,6 @@
     <md-icon>alarm</md-icon> {{list.dueDate | date:"dd/MM/yy"}}
   </span>
   <span class="items">
-    {{list.items.length}} items
+    {{list.items?.length || 0}} items
   </span>
 </footer>
