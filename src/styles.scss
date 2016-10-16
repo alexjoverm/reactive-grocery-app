@@ -17,3 +17,9 @@ md-icon.material-icons {
 h1, h2, h3, h4 {
   a { text-decoration: none; }
 }
+
+.button-right {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: md-color($primary);
+}

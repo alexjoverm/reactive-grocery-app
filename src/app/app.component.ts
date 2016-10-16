@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
+import { FirebaseService } from './firebase.service.ts'
 
 @Component({
   selector: 'app-root',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(private fb: FirebaseService) {
+    fb.init()
+  }
 }

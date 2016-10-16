@@ -13,6 +13,9 @@
     "typeRoots": [
       "../node_modules/@types"
     ],
+    "types": [
+      "firebase"
+    ],
     "baseUrl": ".",
     "paths": {
       "app/*": ["app/*"]

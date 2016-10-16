@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Subscription } from 'rxjs/Subscription'
 import { Store } from '@ngrx/store'
+
+import { FirebaseService } from '../../firebase.service.ts'
+
 import { List } from '../../components/list/list.component'
-import { actionTypes } from '../../state/list/list.reducer'
 import { ListSelector } from '../../state/list/list.selector'
 
 @Component({
@@ -18,9 +20,9 @@ export class GroceriesComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<any>,
-    private listSelector: ListSelector
-  ) {
-  }
+    private listSelector: ListSelector,
+    private firebaseService: FirebaseService
+  ) {}
 
   ngOnInit() {
     this.listsSub = this.listSelector.getLists()
@@ -34,17 +36,14 @@ export class GroceriesComponent implements OnInit, OnDestroy {
   }
 
   deleteList(list: List) {
-    this.store.dispatch({ type: actionTypes.REMOVE_LIST, payload: list})
+    this.firebaseService.deleteList(list)
   }
 
   createList(tempList) { // Don't specify List type because of dueDate
     // Create list
     const list: List = Object.assign({}, tempList)
-    list.id = this.lists.length ? this.lists[this.lists.length - 1].id + 1 : 0
-    list.dueDate = new Date(tempList.dueDate) // transform to Date
-    list.items = []
 
     // Add list
-    this.store.dispatch({ type: actionTypes.ADD_LIST, payload: list})
+    this.firebaseService.addList(list)
   }
 }

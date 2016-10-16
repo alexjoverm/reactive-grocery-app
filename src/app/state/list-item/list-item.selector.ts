@@ -20,7 +20,7 @@ export class ListItemSelector {
     return this.getState().map(state => state.entities)
   }
 
-  public getListItemsFromIds(ids: number[]) {
+  public getListItemsFromIds(ids: string[]) {
     return this.getState().map(state => ids.map(id => state.entities[id]))
   }
 }

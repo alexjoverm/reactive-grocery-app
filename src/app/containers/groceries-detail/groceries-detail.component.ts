@@ -11,6 +11,8 @@ import { actionTypes as listActions } from '../../state/list/list.reducer'
 import { ListSelector } from '../../state/list/list.selector'
 import { ListItemSelector } from '../../state/list-item/list-item.selector'
 
+import { FirebaseService } from '../../firebase.service.ts'
+
 @Component({
   selector: 'app-groceries-detail',
   templateUrl: './groceries-detail.component.html',
@@ -20,7 +22,7 @@ export class GroceriesDetailComponent implements OnInit, OnDestroy {
 
   listSub: Subscription
 
-  list: List
+  list: List = new List()
   items$: Observable<ListItem[]>
   itemsChecked$: Observable<ListItem[]>
 
@@ -28,21 +30,23 @@ export class GroceriesDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private store: Store<any>,
     private listSelector: ListSelector,
-    private listItemSelector: ListItemSelector
+    private listItemSelector: ListItemSelector,
+    private firebaseService: FirebaseService
   ) {}
 
   ngOnInit() {
     // Foreach is like subscribe, but finishes the stream (like a promise)
     this.route.params.forEach((params: Params) => {
-      const id = +params['id']
+      const id = params['id']
 
       this.listSub = this.listSelector.getList(id)
         .subscribe(list => {
           this.list = list
 
-          const allItems$ = this.listItemSelector.getListItemsFromIds(this.list.items)
-          this.items$ = allItems$.map(items => items.filter(item => !item.checked))
-          this.itemsChecked$ = allItems$.map(items => items.filter(item => item.checked))
+          const allItems$ = this.listItemSelector
+            .getListItemsFromIds(this.list.items)
+          this.items$ = allItems$.map(items => items.filter(item => item && !item.checked))
+          this.itemsChecked$ = allItems$.map(items => items.filter(item => item && item.checked))
         })
 
     })
@@ -52,22 +56,24 @@ export class GroceriesDetailComponent implements OnInit, OnDestroy {
     this.listSub.unsubscribe()
   }
 
+  updateList() {
+    this.firebaseService.editList(this.list)
+  }
+
   addItem() {
-    const id = Math.floor((Math.random() * 999999))
-    this.store.dispatch({ type: listItemActions.ADD_LIST_ITEM, payload: {
-      id,
+    this.firebaseService.addListItem({
+      id: '',
       title: '',
       checked: false
-    }})
-
-    this.store.dispatch({ type: listActions.ADD_ITEM, payload: {
-      itemId: id,
-      listId: this.list.id
-    }})
+    }, this.list)
   }
 
   updateItem(item) {
-    this.store.dispatch({ type: listItemActions.EDIT_LIST_ITEM, payload: item })
+    this.firebaseService.editListItem(item)
+  }
+
+  deleteItem(item) {
+    this.firebaseService.deleteListItem(item, this.list)
   }
 
 }

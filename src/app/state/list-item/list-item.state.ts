@@ -1,13 +1,13 @@
 
 export interface ListItemState {
-  id: number
+  id: string
   title: string
   checked: boolean
 }
 
 export interface State {
-  ids: number[],
-  entities: { [id: number]: ListItemState }
+  ids: string[],
+  entities: { [id: string]: ListItemState }
 }
 
 export const initialState: State = {

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core'
 
 export interface ListItem {
-  id: number
+  id: string
   title: string
   checked: boolean
 }
@@ -15,6 +15,7 @@ export class ListItemComponent {
 
   @Input() item: ListItem
   @Output() update: EventEmitter<ListItem> = new EventEmitter<ListItem>()
+  @Output() delete: EventEmitter<ListItem> = new EventEmitter<ListItem>()
 
   @HostBinding('class.checked')
   get checked() { return this.item.checked }
@@ -24,5 +25,9 @@ export class ListItemComponent {
       this.item.checked = ev.checked
     }
     this.update.emit(this.item)
+  }
+
+  deleteItem () {
+    this.delete.emit(this.item)
   }
 }

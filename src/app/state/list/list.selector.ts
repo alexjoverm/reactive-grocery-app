@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { combineLatest } from 'rxjs/observable/combineLatest'
 import { zip } from 'rxjs/observable/zip'
 
 import { AppState } from '../app.state'
@@ -36,8 +35,9 @@ export class ListSelector {
     )
   }
 
-  public getList(id: number) {
+  public getList(id: string) {
     return this.getListEntities()
       .map(listEntities => listEntities[id])
+      .filter(list => !!list)
   }
 }

@@ -1,31 +1,19 @@
 
 export interface ListState {
-  id: number
+  id: string
   title: string
   dueDate: Date
-  items: number[]
+  items: string[]
 }
 
-export type listEntities = { [id: number]: ListState }
+export type listEntities = { [id: string]: ListState }
 
 export interface State {
-  ids: number[],
+  ids: string[],
   entities: listEntities
 }
 
-// export const initialState: State = {
-//   ids: [],
-//   entities: {}
-// }
-
 export const initialState: State = {
-  ids: [0],
-  entities: {
-    0: {
-      id: 0,
-      title: 'test',
-      dueDate: new Date(),
-      items: []
-    }
-  }
+  ids: [],
+  entities: {}
 }

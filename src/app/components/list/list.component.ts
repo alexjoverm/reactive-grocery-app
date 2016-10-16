@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'
 
 export class List {
-  id: number
+  id: string
   title: string
   dueDate: Date
-  items: number[]
+  items: string[]
 }
 
 @Component({

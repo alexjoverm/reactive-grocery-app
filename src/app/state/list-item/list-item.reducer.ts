@@ -36,12 +36,12 @@ export const listItemReducer: ActionReducer<State> = (state: State = initialStat
     }
 
     case actionTypes.REMOVE_LIST_ITEM: {
-      const item = action.payload
+      const itemId = action.payload
       const entitiesCopy = Object.assign({}, state.entities)
-      delete entitiesCopy[item.id]
+      delete entitiesCopy[itemId]
 
       return {
-        ids: state.ids.filter(id => id !== item.id),
+        ids: state.ids.filter(id => id !== itemId),
         entities: entitiesCopy
       }
     }

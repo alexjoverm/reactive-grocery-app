@@ -4,6 +4,20 @@
   margin-bottom: 20px;
 }
 
+.items {
+  margin-top: 10px;
+}
+
+h2 {
+  margin: 0;
+}
+
+.textbox {
+  /deep/ .md-input-underline {
+    border: none;
+  }
+}
+
 app-list-item {
   border-bottom: 1px solid #ddd;
   &:last-child {
@@ -13,13 +27,16 @@ app-list-item {
 
 .flex-wrap {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  align-items: baseline;
 }
 .col-2 {
   flex: 0 0 100%;
   box-sizing: border-box;
+}
 
-  &:last-child {
+.items {
+  .col-2:last-child {
     margin-top: 18px;
   }
 }
