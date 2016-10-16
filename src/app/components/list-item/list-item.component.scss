@@ -1,0 +1,39 @@
+@import "~@angular/material/core/theming/_theming";
+@import "../../../styles";
+
+:host {
+  display: flex;
+  background: white;
+  padding: 2px 10px;
+  box-sizing: border-box;
+
+  > article {
+    flex: 1 1 100%;
+  }
+
+  .checkbox {
+    flex-shrink: 0;
+  }
+
+  .textbox {
+    flex: 1 1 auto;
+  }
+
+  /deep/ .md-input-underline {
+    border: none;
+  }
+
+  &.checked {
+    /deep/ .md-input-element {
+      color: #888;
+      text-decoration: line-through;
+    }
+  }
+}
+
+.button-right {
+  margin-top: 5px;
+}
+
+
+
