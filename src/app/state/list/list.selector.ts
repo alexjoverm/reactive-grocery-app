@@ -40,16 +40,4 @@ export class ListSelector {
     return this.getListEntities()
       .map(listEntities => listEntities[id])
   }
-
-  public getListWithItems(id: number) {
-    return combineLatest(
-      this.getList(id),
-      this.listItemSelector.getListItemEntities()
-    )
-    .map(([ list, listItemEntities]) => {
-      const items = list.items.map(listId => listItemEntities[listId])
-      list = Object.assign({}, list, { items })
-      return list
-    })
-  }
 }

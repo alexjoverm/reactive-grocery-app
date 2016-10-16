@@ -1,18 +1,36 @@
 <h2>{{list.title}}</h2>
 
-<section class="list-items">
-  <app-list-item
-    *ngFor="let item of list.items"
-    [item]="item"
-    (update)="updateItem($event)">
-  </app-list-item>
-</section>
+<div class="flex-wrap">
 
-<button
-  md-raised-button
-  color="primary"
-  (click)="addItem()">
-    Añadir item
-</button>
+  <div class="col-2">
+    <section class="list-items">
+      <app-list-item
+        *ngFor="let item of items$ | async; trackBy:item?.id"
+        [item]="item"
+        (update)="updateItem($event)">
+      </app-list-item>
+    </section>
+
+    <button
+      md-raised-button
+      color="primary"
+      (click)="addItem()">
+        Añadir item
+    </button>
+  </div>
+
+  <div class="col-2 margin-top">
+    <section class="list-items">
+      <app-list-item
+        *ngFor="let item of itemsChecked$ | async; trackBy:item?.id"
+        [item]="item"
+        (update)="updateItem($event)">
+      </app-list-item>
+    </section>
+  </div>
+</div>
+
+
+
 
 

@@ -24,7 +24,6 @@ export class GroceriesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.listsSub = this.listSelector.getLists()
-      .do(val => console.log(val))
       .subscribe(lists => {
         this.lists = lists
       })

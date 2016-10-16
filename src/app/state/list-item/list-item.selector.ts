@@ -6,7 +6,7 @@ import { AppState } from '../app.state'
 @Injectable()
 export class ListItemSelector {
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) { }
 
   private getState() {
     return this.store.select((state: AppState) => state.listItems)
@@ -17,9 +17,10 @@ export class ListItemSelector {
   }
 
   public getListItemEntities() {
-    return this.getState().map(state => state.entities).do(val => {
-      console.log('LIST ENTITIES')
-      console.log(val)
-    })
+    return this.getState().map(state => state.entities)
+  }
+
+  public getListItemsFromIds(ids: number[]) {
+    return this.getState().map(state => ids.map(id => state.entities[id]))
   }
 }

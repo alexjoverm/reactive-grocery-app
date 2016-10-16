@@ -49,10 +49,8 @@ export const listReducer: ActionReducer<State> = (state: State = initialState, a
 
     case actionTypes.ADD_ITEM: {
       const { itemId, listId } = action.payload
-      console.log(action.payload)
       const entity = Object.assign({}, state.entities[listId])
       entity.items.push(itemId)
-      console.log(JSON.stringify(entity, null, 2))
 
       return {
         ids: state.ids,
@@ -61,13 +59,13 @@ export const listReducer: ActionReducer<State> = (state: State = initialState, a
     }
 
     case actionTypes.REMOVE_ITEM: {
-      const { itemId, list } = action.payload
-      const entity = state.entities[list.id]
-      entity.items = [...entity.items, itemId]
+      const { itemId, listId } = action.payload
+      const entity = state.entities[listId]
+      entity.items = entity.items.filter(id => id !== itemId)
 
       return {
         ids: state.ids,
-        entities: Object.assign({}, state.entities, { [list.id]: entity })
+        entities: Object.assign({}, state.entities, { [listId]: entity })
       }
     }
 

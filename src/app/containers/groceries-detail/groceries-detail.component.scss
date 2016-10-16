@@ -5,8 +5,32 @@
 }
 
 app-list-item {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #ddd;
   &:last-child {
     border-bottom: none
+  }
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.col-2 {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+
+  &:last-child {
+    margin-top: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-2 {
+    flex: 0 0 50%;
+
+    &:last-child {
+      margin-top: 0;
+      padding-left: 10px;
+    }
   }
 }

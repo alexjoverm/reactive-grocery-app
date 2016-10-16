@@ -1,5 +1,4 @@
 import { ActionReducer, Action } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
 import { State, initialState } from './list-item.state'
 
 /**
@@ -30,8 +29,6 @@ export const listItemReducer: ActionReducer<State> = (state: State = initialStat
 
     case actionTypes.EDIT_LIST_ITEM: {
       const item = Object.assign({}, action.payload)
-      console.log(item)
-      console.log(Object.assign({}, state.entities, { [item.id]: item }))
       return {
         ids: state.ids,
         entities: Object.assign({}, state.entities, { [item.id]: item })
