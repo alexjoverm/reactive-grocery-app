@@ -1,0 +1,54 @@
+
+<div class="flex-wrap">
+  <h2 class="col-2">
+    <md-input
+      class="textbox"
+      [(ngModel)]="list.title"
+      (blur)="updateList()">
+    </md-input>
+  </h2>
+
+  <div class="col-2">
+    <span class="date">
+      <md-icon>alarm</md-icon> {{list.dueDate | date:"dd/MM/yy"}}
+    </span>
+  </div>
+
+</div>
+
+
+<div class="items flex-wrap">
+
+  <div class="col-2">
+    <section class="list-items">
+      <app-list-item
+        *ngFor="let item of items$ | async; trackBy:item?.id"
+        [item]="item"
+        (update)="updateItem($event)"
+        (delete)="deleteItem($event)">
+      </app-list-item>
+    </section>
+
+    <button
+      md-raised-button
+      color="primary"
+      (click)="addItem()">
+        Añadir item
+    </button>
+  </div>
+
+  <div class="col-2 margin-top">
+    <section class="list-items">
+      <app-list-item
+        *ngFor="let item of itemsChecked$ | async; trackBy:item?.id"
+        [item]="item"
+        (update)="updateItem($event)">
+      </app-list-item>
+    </section>
+  </div>
+</div>
+
+
+
+
+

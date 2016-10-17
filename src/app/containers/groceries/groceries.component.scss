@@ -1,0 +1,17 @@
+.lists {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.add-list {
+  margin-top: 20px;
+}
+
+app-list {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 49%;
+  }
+}

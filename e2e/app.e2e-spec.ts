@@ -1,10 +1,10 @@
-import { ReactiveGroceryAppPage } from './app.po';
+import { DevmeetingsPage } from './app.po';
 
-describe('reactive-grocery-app App', function() {
-  let page: ReactiveGroceryAppPage;
+describe('devmeetings App', function() {
+  let page: DevmeetingsPage;
 
   beforeEach(() => {
-    page = new ReactiveGroceryAppPage();
+    page = new DevmeetingsPage();
   });
 
   it('should display message saying app works', () => {
