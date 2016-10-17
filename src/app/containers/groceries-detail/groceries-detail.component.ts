@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { ActivatedRoute, Params }   from '@angular/router'
-import { Store } from '@ngrx/store'
 import { Subscription } from 'rxjs/Subscription'
 import { Observable } from 'rxjs/Observable'
 
@@ -11,7 +10,7 @@ import { actionTypes as listActions } from '../../state/list/list.reducer'
 import { ListSelector } from '../../state/list/list.selector'
 import { ListItemSelector } from '../../state/list-item/list-item.selector'
 
-import { FirebaseService } from '../../firebase.service.ts'
+import { FirebaseService } from '../../firebase.service'
 
 @Component({
   selector: 'app-groceries-detail',
@@ -28,7 +27,6 @@ export class GroceriesDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<any>,
     private listSelector: ListSelector,
     private listItemSelector: ListItemSelector,
     private firebaseService: FirebaseService

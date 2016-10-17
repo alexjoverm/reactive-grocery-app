@@ -76,7 +76,7 @@ export class FirebaseService {
     this.listItemsRef.on('child_changed', listItemSnap => {
       this.store.dispatch({
         type: listItemActions.EDIT_LIST_ITEM,
-        payload: listItemSnap
+        payload: this.parseListItemSnap(listItemSnap)
       })
     })
 
